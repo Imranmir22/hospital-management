@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run:*)",
+      "Read(//etc/mysql/**)",
+      "Read(//root/**)",
+      "Bash(sudo mysql:*)",
+      "Bash(git:*)",
+      "Bash(node -e \" const fs = require\\('fs'\\); const lock = JSON.parse\\(fs.readFileSync\\('/var/www/html/expense-splitter-backend/node_modules/.package-lock.json', 'utf8'\\)\\); const deps = {}; for \\(const [name, info] of Object.entries\\(lock.packages || {}\\)\\) { if \\(!name.startsWith\\('node_modules/'\\) || name.split\\('/'\\).filter\\(x=>x!=''\\).length > \\(name.startsWith\\('node_modules/@'\\) ? 2 : 1\\)\\) continue; const pkgName = name.replace\\('node_modules/', ''\\); deps[pkgName] = info.version; } console.log\\(JSON.stringify\\(deps, null, 2\\)\\); \")",
+      "Bash(node:*)",
+      "Bash(node_modules/.bin/nest build:*)",
+      "Bash(ls /var/www/html/expense-splitter-backend/*.json)",
+      "Bash(mysql -uroot -ppassword abroadworks -e \"SELECT id, organization_id, LEFT\\(client_id,40\\) AS client_id, LEFT\\(access_token,40\\) AS access_token, LEFT\\(realm_id,40\\) AS realm_id, mode FROM integration_quickbooks LIMIT 10;\")",
+      "Bash(php artisan tinker '--execute= *)",
+      "Bash(gh pr *)",
+      "Bash(gh api *)",
+      "Bash(php artisan *)"
+    ]
+  }
+}

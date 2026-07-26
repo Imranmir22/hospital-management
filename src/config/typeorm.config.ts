@@ -8,7 +8,7 @@ export default new DataSource({
   port: parseInt(process.env.DB_PORT || '3306', 10),
   username: 'root',
   password: 'password',
-  database: process.env.DB_DATABASE || 'expense_splitter',
+  database: process.env.DB_DATABASE,
   entities: [
     path.join(__dirname, '..', '**', '*.entity.{ts,js}'),
   ],

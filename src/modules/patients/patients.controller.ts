@@ -12,7 +12,8 @@ export class PatientsController {
   @Post()
   create(@Body() createPatientDto: CreatePatientDto, @CurrentUser() user: User) {
     return this.patientsService.create(createPatientDto,user);
-  }user
+  }
+  
   @Get()
   findAll() {
     return this.patientsService.findAll();

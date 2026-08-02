@@ -9,28 +9,13 @@ import { CurrentUser } from '../auth/decorators/current-user.decorator';
 export class PatientsController {
   constructor(private readonly patientsService: PatientsService) {}
 
-  @Post()
-  create(@Body() createPatientDto: CreatePatientDto, @CurrentUser() user: User) {
-    return this.patientsService.create(createPatientDto,user);
-  }
-  
-  @Get()
-  findAll() {
-    return this.patientsService.findAll();
+  @Get('profile')
+  findOne(@CurrentUser() user: User) {
+    return this.patientsService.findOne(user);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string, @CurrentUser() user: User) {
-    return this.patientsService.findOne(+id,user);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePatientDto: UpdatePatientDto, @CurrentUser() user: User) {
-    return this.patientsService.update(+id, updatePatientDto,user);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.patientsService.remove(+id);
+  @Patch('profile')
+  updateorCreate(@Body() updatePatientDto: UpdatePatientDto, @CurrentUser() user: User) {
+    return this.patientsService.updateorCreate(updatePatientDto,user);
   }
 }

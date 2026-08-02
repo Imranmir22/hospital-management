@@ -1,6 +1,7 @@
 import { User } from "src/modules/users/entities/user.entity";
-import { Column, CreateDateColumn, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, JoinColumn, ManyToOne,Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
+@Entity('patients')
 export class Patient {
 
     @PrimaryGeneratedColumn({ type: 'bigint' })

@@ -30,15 +30,18 @@ export class PatientsService {
     return `This action returns all patients`;
   }
 
-  async findOne(id: number, user: User) {
-    return await this.patientRepository.findOne({ where: { user_id: user.id, id:id } });
+  async findOne(user: User) {
+    return await this.patientRepository.findOne({ where: { user_id: user.id } });
   }
 
-  async update(id: number, updatePatientDto: UpdatePatientDto, user: User) {
-    const profile = await this.patientRepository.findOne({ where: { user_id: user.id, id:id } })
+  async updateorCreate(updatePatientDto: UpdatePatientDto, user: User) {
+    const profile = await this.patientRepository.findOne({ where: { user_id: user.id } });
     
     if(!profile) {
-      throw new Error('Profile not found for this user');
+     return  await this.patientRepository.save({
+        ...updatePatientDto,
+        user: user
+      });
     }
 
     Object.assign(profile, updatePatientDto);
